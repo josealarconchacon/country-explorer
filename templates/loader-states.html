@@ -1,0 +1,39 @@
+<template id="loader-state-template">
+  <div class="loader-state">
+    <div>
+      <div class="spinner"></div>
+      <h2>Loading countries...</h2>
+      <p>Gathering global data for your exploration.</p>
+    </div>
+  </div>
+</template>
+
+<template id="empty-state-template">
+  <div class="empty-state">
+    <div>
+      <h2 class="empty-state__title"></h2>
+      <p>Try adjusting your search or filter criteria.</p>
+    </div>
+  </div>
+</template>
+
+<template id="error-card-template">
+  <div class="error-card">
+    <div class="error-card__icon">!</div>
+
+    <div>
+      <h3>Country not found</h3>
+      <p>
+        There was an issue retrieving the specific data for this region. This
+        could be due to a temporary connection error with the API.
+      </p>
+    </div>
+
+    <div class="error-card__actions">
+      <button class="btn" data-action="go-back">Go back</button>
+      <button class="btn btn--primary" data-action="retry">
+        Retry Connection
+      </button>
+    </div>
+  </div>
+</template>

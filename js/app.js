@@ -41,16 +41,16 @@ function clearUI() {
   messageContainer.innerHTML = "";
 }
 
-function renderCountries(countryList) {
+async function renderCountries(countryList) {
   clearUI();
 
   if (!countryList.length) {
-    showEmptyState(messageContainer);
+    await showEmptyState(messageContainer);
     return;
   }
 
-  countryList.forEach((country) => {
-    const card = createCountryCard(
+  for (const country of countryList) {
+    const card = await createCountryCard(
       country,
       favorites,
       handleViewDetails,
@@ -58,11 +58,11 @@ function renderCountries(countryList) {
     );
 
     countryGrid.appendChild(card);
-  });
+  }
 }
 
-function renderAllFavorites() {
-  renderFavorites(favoritesGrid, favorites, handleToggleFavorite);
+async function renderAllFavorites() {
+  await renderFavorites(favoritesGrid, favorites, handleToggleFavorite);
 }
 
 function setViewMode(mode) {
@@ -86,15 +86,15 @@ function handleViewDetails(country) {
   openCountryModal(country, favorites, handleToggleFavorite);
 }
 
-function handleToggleFavorite(country) {
+async function handleToggleFavorite(country) {
   favorites = toggleFavorite(country);
-  renderCountries(countries);
-  renderAllFavorites();
+  await renderCountries(countries);
+  await renderAllFavorites();
 }
 
 async function loadDefaultCountries() {
   clearUI();
-  showLoader(loaderContainer);
+  await showLoader(loaderContainer);
 
   try {
     const requests = DEFAULT_COUNTRIES.map((countryName) =>
@@ -106,9 +106,9 @@ async function loadDefaultCountries() {
     countries = responses.map((response) => response[0]);
 
     resultsTitle.textContent = "Trending Explorations";
-    renderCountries(countries);
+    await renderCountries(countries);
   } catch {
-    showError(messageContainer, loadDefaultCountries);
+    await showError(messageContainer, loadDefaultCountries);
   } finally {
     hideLoader(loaderContainer);
   }
@@ -116,16 +116,16 @@ async function loadDefaultCountries() {
 
 async function handleSearch(searchValue) {
   clearUI();
-  showLoader(loaderContainer);
+  await showLoader(loaderContainer);
 
   try {
     countries = await fetchCountryByName(searchValue);
 
     resultsTitle.textContent = `Search Results for "${searchValue}"`;
-    renderCountries(countries);
+    await renderCountries(countries);
   } catch {
     countries = [];
-    showError(messageContainer, () => handleSearch(searchValue));
+    await showError(messageContainer, () => handleSearch(searchValue));
   } finally {
     hideLoader(loaderContainer);
   }
@@ -133,29 +133,29 @@ async function handleSearch(searchValue) {
 
 async function handleFilter(region) {
   clearUI();
-  showLoader(loaderContainer);
+  await showLoader(loaderContainer);
 
   try {
     countries = await fetchCountriesByRegion(region);
 
     resultsTitle.textContent = `${region} Countries`;
-    renderCountries(countries.slice(0, 12));
+    await renderCountries(countries.slice(0, 12));
   } catch {
     countries = [];
-    showError(messageContainer, () => handleFilter(region));
+    await showError(messageContainer, () => handleFilter(region));
   } finally {
     hideLoader(loaderContainer);
   }
 }
 
-function initApp() {
+async function initApp() {
   initSearch(searchForm, searchInput, handleSearch);
   initFilter(regionFilter, handleFilter);
   initThemeToggle(themeToggle);
   initViewToggle();
 
-  renderAllFavorites();
-  loadDefaultCountries();
+  await renderAllFavorites();
+  await loadDefaultCountries();
 }
 
 initApp();

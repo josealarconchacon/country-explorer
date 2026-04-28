@@ -491,8 +491,41 @@ body.dark .modal__side {
   background: #16313a;
   color: #d6ffff;
   border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.map-placeholder__iframe {
+  width: 100%;
+  min-height: 220px;
+  height: 220px;
+  border: 0;
+}
+
+.map-placeholder__fallback {
+  min-height: 170px;
   display: grid;
   place-items: center;
   text-align: center;
   padding: 1rem;
+}
+
+.map-links {
+  margin-top: 0.75rem;
+  display: flex;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+}
+
+.map-links__item {
+  font-size: 0.78rem;
+  padding: 0.35rem 0.6rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-full);
+  color: var(--color-primary);
+  background: var(--color-surface);
+}
+
+.map-links__item:hover {
+  background: #ece9ff;
 }

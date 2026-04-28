@@ -5,6 +5,7 @@ import {
   getLanguages,
   getCountryId,
 } from "../utils/helpers.js";
+import { getCountryMapUrls } from "../api/mapsApi.js";
 
 export function openCountryModal(country, favorites, onToggleFavorite) {
   const modalRoot = document.getElementById("modal-root");
@@ -12,6 +13,7 @@ export function openCountryModal(country, favorites, onToggleFavorite) {
   const isFavorite = favorites.some((item) => getCountryId(item) === countryId);
   const currency = getCurrencyDetails(country);
   const languages = getLanguages(country);
+  const mapInfo = getCountryMapUrls(country);
 
   modalRoot.innerHTML = `
     <div class="modal-overlay" id="modal-overlay">
@@ -107,10 +109,50 @@ export function openCountryModal(country, favorites, onToggleFavorite) {
             <h3 class="modal__section-title">Location</h3>
 
             <div class="map-placeholder">
-              <div>
-                <strong>${country.name.common}</strong>
-                <p>Lat: ${country.latlng?.[0] || "N/A"}, Lng: ${country.latlng?.[1] || "N/A"}</p>
-              </div>
+              ${
+                mapInfo.embedUrl
+                  ? `
+                    <iframe
+                      class="map-placeholder__iframe"
+                      src="${mapInfo.embedUrl}"
+                      title="Map of ${country.name.common}"
+                      loading="lazy"
+                      referrerpolicy="no-referrer-when-downgrade"
+                      allowfullscreen
+                    ></iframe>
+                  `
+                  : `
+                    <div class="map-placeholder__fallback">
+                      <strong>${country.name.common}</strong>
+                      <p>Map preview unavailable for this country.</p>
+                    </div>
+                  `
+              }
+            </div>
+
+            <div class="map-links">
+              <a
+                class="map-links__item"
+                href="${mapInfo.googleMapsUrl}"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Open in Google Maps
+              </a>
+              ${
+                mapInfo.openStreetMapUrl
+                  ? `
+                    <a
+                      class="map-links__item"
+                      href="${mapInfo.openStreetMapUrl}"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      Open in OpenStreetMap
+                    </a>
+                  `
+                  : ""
+              }
             </div>
           </aside>
         </div>

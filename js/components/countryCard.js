@@ -6,7 +6,7 @@ import {
 } from "../utils/helpers.js";
 
 let countryCardTemplate = null;
-
+// load and cache the card template to avoid repeated fetch requests
 async function getCountryCardTemplate() {
   if (countryCardTemplate) return countryCardTemplate;
 
@@ -50,7 +50,7 @@ export async function createCountryCard(
   );
   card.querySelector(".country-card__currency").textContent =
     getCurrency(country);
-
+  // update favorite button UI based on saved state
   favoriteBtn.textContent = isFavorite ? "♥" : "♡";
   favoriteBtn.classList.toggle("active", isFavorite);
 

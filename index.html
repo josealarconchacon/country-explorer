@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Country Explorer</title>
+
+    <link rel="stylesheet" href="./css/variables.css" />
+    <link rel="stylesheet" href="./css/reset.css" />
+    <link rel="stylesheet" href="./css/global.css" />
+    <link rel="stylesheet" href="./css/components.css" />
+    <link rel="stylesheet" href="./css/responsive.css" />
+
+    <script type="module" src="./js/app.js" defer></script>
+  </head>
+  <body>
+    <header class="header">
+      <div class="container header__container">
+        <a href="#" class="logo">
+          <span class="logo__icon">🌎</span>
+          Country Explorer
+        </a>
+
+        <nav class="nav">
+          <a href="#explore" class="nav__link nav__link--active">Explore</a>
+          <a href="#favorites" class="nav__link">Favorites</a>
+        </nav>
+
+        <button
+          class="theme-toggle"
+          id="theme-toggle"
+          aria-label="Toggle dark mode"
+        >
+          🌙
+        </button>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero" id="explore">
+        <div class="container">
+          <div class="hero__content">
+            <h1>Explore Countries Around the World</h1>
+            <p>
+              Discover detailed information, demographics, and cultural insights
+              from every corner of the globe in our interactive portfolio.
+            </p>
+
+            <form class="search-panel" id="search-form">
+              <div class="search-panel__input-group">
+                <span class="search-panel__icon">⌕</span>
+                <input
+                  type="text"
+                  id="search-input"
+                  placeholder="Search by country name..."
+                  autocomplete="off"
+                />
+              </div>
+
+              <select id="region-filter" class="filter-select">
+                <option value="">Filter by Region</option>
+                <option value="Africa">Africa</option>
+                <option value="Americas">Americas</option>
+                <option value="Asia">Asia</option>
+                <option value="Europe">Europe</option>
+                <option value="Oceania">Oceania</option>
+              </select>
+            </form>
+          </div>
+        </div>
+      </section>
+
+      <section class="countries-section">
+        <div class="container">
+          <div class="section-header">
+            <h2 id="results-title">Trending Explorations</h2>
+
+            <div class="view-actions">
+              <button
+                class="view-actions__btn active"
+                id="grid-view-btn"
+                aria-label="Grid view"
+                aria-pressed="true"
+              >
+                ▦
+              </button>
+              <button
+                class="view-actions__btn"
+                id="list-view-btn"
+                aria-label="List view"
+                aria-pressed="false"
+              >
+                ☰
+              </button>
+            </div>
+          </div>
+
+          <div id="loader-container"></div>
+          <div id="message-container"></div>
+          <div id="country-grid" class="country-grid"></div>
+        </div>
+      </section>
+
+      <section class="favorites-section" id="favorites">
+        <div class="container">
+          <div class="favorites-section__header">
+            <span>☆</span>
+            <h2>Favorite Countries</h2>
+          </div>
+
+          <div id="favorites-grid" class="favorites-grid"></div>
+        </div>
+      </section>
+    </main>
+
+    <div id="modal-root"></div>
+
+    <footer class="footer">
+      <div class="container footer__container">
+        <div>
+          <h3>Country Explorer</h3>
+          <p>Built with HTML, CSS, JavaScript, and REST Countries API.</p>
+        </div>
+
+        <div class="footer__links">
+          <a href="https://restcountries.com/" target="_blank">API Docs</a>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

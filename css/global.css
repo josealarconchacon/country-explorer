@@ -1,0 +1,162 @@
+body {
+  font-family: Inter, Arial, Helvetica, sans-serif;
+  background: var(--color-bg);
+  color: var(--color-text);
+  transition:
+    background var(--transition),
+    color var(--transition);
+}
+
+.container {
+  width: min(100% - 48px, var(--container-width));
+  margin-inline: auto;
+}
+
+.header {
+  background: var(--color-surface);
+  border-bottom: 1px solid var(--color-border);
+  position: sticky;
+  top: 0;
+  z-index: 20;
+}
+
+.header__container {
+  min-height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  font-weight: 800;
+  font-size: 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.logo__icon {
+  font-size: 1.1rem;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.nav__link {
+  font-size: 0.95rem;
+  color: #26324d;
+  padding: 1.35rem 0;
+  border-bottom: 2px solid transparent;
+}
+
+body.dark .nav__link {
+  color: var(--color-text-muted);
+}
+
+.nav__link--active,
+.nav__link:hover {
+  color: var(--color-primary);
+  border-color: var(--color-primary);
+}
+
+.theme-toggle {
+  border: none;
+  background: transparent;
+  font-size: 1.25rem;
+  color: var(--color-text);
+}
+
+.hero {
+  padding: 56px 0 72px;
+}
+
+.hero__content {
+  max-width: 840px;
+}
+
+.hero h1 {
+  font-size: clamp(2.3rem, 5vw, 4.1rem);
+  line-height: 1.05;
+  letter-spacing: -0.06em;
+  max-width: 720px;
+}
+
+.hero p {
+  margin-top: 1.2rem;
+  max-width: 720px;
+  color: #2f3448;
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
+
+body.dark .hero p {
+  color: var(--color-text-muted);
+}
+
+.countries-section {
+  padding-bottom: 64px;
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 28px;
+}
+
+.section-header h2,
+.favorites-section h2 {
+  font-size: 1.55rem;
+}
+
+.favorites-section {
+  background: var(--color-surface-soft);
+  padding: 50px 0;
+}
+
+.favorites-section__header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  color: var(--color-primary);
+  margin-bottom: 28px;
+}
+
+.favorites-section__header h2 {
+  color: var(--color-text);
+}
+
+.footer {
+  background: var(--color-surface);
+  padding: 48px 0;
+  border-top: 1px solid var(--color-border);
+}
+
+.footer__container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2rem;
+}
+
+.footer h3 {
+  margin-bottom: 1rem;
+}
+
+.footer p,
+.footer a {
+  color: var(--color-text-muted);
+  font-size: 0.9rem;
+}
+
+.footer__links {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.footer__links a {
+  text-decoration: underline;
+}

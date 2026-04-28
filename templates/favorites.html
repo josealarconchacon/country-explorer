@@ -1,0 +1,23 @@
+<template id="favorites-empty-template">
+  <div class="empty-state">
+    <div>
+      <h2>No favorites yet.</h2>
+      <p>Add countries you want to remember.</p>
+      <button class="btn btn--primary empty-state__action" type="button">
+        Add countries to favorites
+      </button>
+    </div>
+  </div>
+</template>
+
+<template id="favorite-card-template">
+  <article class="favorite-card">
+    <img class="favorite-card__image" />
+
+    <div>
+      <h3 class="favorite-card__name"></h3>
+      <p class="favorite-card__region"></p>
+      <button type="button">Manage Favorite</button>
+    </div>
+  </article>
+</template>

@@ -3,7 +3,7 @@ import { getFromStorage, saveToStorage } from "../utils/storage.js";
 import { getCountryId } from "../utils/helpers.js";
 
 let favoritesTemplates = null;
-
+// fetch favorites UI templates
 async function getFavoritesTemplates() {
   if (favoritesTemplates) return favoritesTemplates;
 
@@ -20,7 +20,7 @@ async function getFavoritesTemplates() {
 
   return favoritesTemplates;
 }
-
+// saved favorite countries from localStorage
 export function getFavorites() {
   return getFromStorage(STORAGE_KEYS.favorites, []);
 }
@@ -45,7 +45,9 @@ export async function renderFavorites(container, favorites, onRemoveFavorite) {
 
   if (!favorites.length) {
     container.innerHTML = "";
-    container.appendChild(templates.empty.content.firstElementChild.cloneNode(true));
+    container.appendChild(
+      templates.empty.content.firstElementChild.cloneNode(true),
+    );
 
     container
       .querySelector(".empty-state__action")

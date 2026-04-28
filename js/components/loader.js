@@ -17,7 +17,7 @@ async function getLoaderTemplates() {
 
   return loaderTemplates;
 }
-
+// replace container content with selected template
 function renderFromTemplate(container, template) {
   container.innerHTML = "";
   container.appendChild(template.content.firstElementChild.cloneNode(true));
